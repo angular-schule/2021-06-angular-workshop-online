@@ -8,7 +8,6 @@ import { Book } from '../shared/book';
 })
 export class BookComponent implements OnInit {
 
-
   @Input() book?: Book;
 
   constructor() { }
