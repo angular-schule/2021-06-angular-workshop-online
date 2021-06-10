@@ -15,11 +15,16 @@ describe('BookComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BookComponent);
-    component = fixture.componentInstance;
+    component = fixture.componentInstance; // TS
+    // const element = fixture.nativeElement; // DOM
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit event for onRateUp', () => {
+    // TODO
   });
 });
