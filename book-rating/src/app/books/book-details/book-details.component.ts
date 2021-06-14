@@ -17,6 +17,7 @@ export class BookDetailsComponent implements OnInit {
     // Synchroner Weg / PULL
     // const isbn = this.route.snapshot.paramMap.get('isbn');
     // console.log(isbn);
+    
 
     // Asynchroner Weg / PUSH
     // TODO: Verschachtelte Subscriptions!
@@ -25,11 +26,11 @@ export class BookDetailsComponent implements OnInit {
       this.bs.getSingle(isbn).subscribe(book => {
         this.book = book;
       });
-    });
+    });    
   }
   
   ngOnInit(): void {
-
+    
   }
 
 }
