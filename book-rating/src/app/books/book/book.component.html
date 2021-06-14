@@ -16,6 +16,7 @@
     <div>
       <button (click)="onRateUp()" class="btn btn-success mr-2"> + </button>
       <button (click)="onRateDown()" class="btn btn-danger mr-2"> – </button>
+      <a [routerLink]="['/books', book.isbn]">Details</a>
     </div>
   </div>
 </div>
