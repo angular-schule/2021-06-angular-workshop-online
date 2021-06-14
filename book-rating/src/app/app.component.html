@@ -1,15 +1,11 @@
 <div class="container">
     <h1>{{ title }}</h1>
 
+    <nav>
+        <a class="mr-2" routerLink="/books" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+        <a class="mr-2" routerLink="/books/create" routerLinkActive="active">Anlegen</a>
+        <a class="mr-2" routerLink="/books/search" routerLinkActive="active">Suche</a>
+    </nav>
+
     <router-outlet></router-outlet>
 </div>
-
-<!--
-    TODO:
-    - Default-Route (Root-Pfad)
-    - Wildcard-Route
-    - Links
-    - Detailseite
-        - ISBN auslesen
-        - HTTP => Buch laden
--->
