@@ -23,6 +23,41 @@ export class CreatingComponent implements OnInit {
 
     /******************************/
 
+    /*function producer(o) {
+      o.next(1);
+      o.next(2);
+
+      setTimeout(() => {
+        o.next(3)
+      }, 2000)
+
+      setTimeout(() => {
+        o.complete();
+        o.next(10);
+      }, 4000)
+    }
+
+    const observer = {
+      next: e => console.log(e),
+      error: err => console.error(err),
+      complete: () => console.log('C'),
+    };
+
+    // producer(observer);
+
+    const myObservable$ = new Observable(producer);
+
+    myObservable$.subscribe(observer);*/
+
+    interval(1000).pipe(
+      map(e => {
+        return e * 3;
+      }),
+      filter(e => e % 2 === 0)
+    ).subscribe({
+      next: e => this.log(e),
+      complete: () => this.log('COMPLETE')
+    });
     
     /******************************/
   }
