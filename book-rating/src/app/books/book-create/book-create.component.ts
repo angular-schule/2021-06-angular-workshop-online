@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
 
@@ -9,13 +10,18 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class BookCreateComponent implements OnInit {
 
-  constructor(private bs: BookStoreService) { }
+  constructor(private bs: BookStoreService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   create(book: Book) {
-    console.log(book);
+
+    this.bs.create(book).subscribe(b => {
+      // zur Detailseite navigieren
+      this.router.navigate(['/books', b.isbn]);
+      // Alternativ: this.router.navigateByUrl('/books');
+    });
   }
 
 }
