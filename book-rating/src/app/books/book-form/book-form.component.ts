@@ -17,7 +17,7 @@ TODO:
   styleUrls: ['./book-form.component.scss']
 })
 export class BookFormComponent implements OnInit {
-
+  
   @Output() submitForm = new EventEmitter<Book>();
   bookForm: FormGroup;
 
