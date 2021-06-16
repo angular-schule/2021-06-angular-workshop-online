@@ -5,3 +5,5 @@
         class="form-control"
         [formControl]="searchControl">
 </div>
+
+<div *ngFor="let r of results$ | async">{{ r.title }}</div>
