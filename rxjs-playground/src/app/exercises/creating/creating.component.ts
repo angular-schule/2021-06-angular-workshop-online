@@ -27,7 +27,7 @@ export class CreatingComponent implements OnInit {
       o.next(1);
       o.next(2);
 
-      setTimeout(() => {
+      const timer1 = setTimeout(() => {
         o.next(3)
       }, 2000)
 
@@ -35,6 +35,11 @@ export class CreatingComponent implements OnInit {
         o.complete();
         o.next(10);
       }, 4000)
+
+      // Teardown Logic
+      return () => {
+        clearTimeout(timer1);
+      };
     }
 
     const observer = {
@@ -47,7 +52,7 @@ export class CreatingComponent implements OnInit {
 
     const myObservable$ = new Observable(producer);
 
-    myObservable$.subscribe(observer);*/
+    myObservable$.subscribe(e => console.log(e));*/
 
     interval(1000).pipe(
       map(e => {

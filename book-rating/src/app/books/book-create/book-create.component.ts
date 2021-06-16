@@ -20,7 +20,7 @@ export class BookCreateComponent implements OnInit {
     this.bs.create(book).subscribe(b => {
       // zur Detailseite navigieren
       this.router.navigate(['/books', b.isbn]);
-      // Alternativ: this.router.navigateByUrl('/books');
+      // Alternativ: this.router.navigateByUrl('/books'); // routerLink="/books"
     });
   }
 

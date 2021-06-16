@@ -2,21 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../shared/book';
 
-/*
-TODO:
-- Abschicken: Button, Methode
-- nur abschicken, wenn valide
-- Buch erzeugen
-- HTTP
-- Nach Erfolg: zur Detailseite navigieren
-*/
-
 @Component({
   selector: 'br-book-form',
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.scss']
 })
-export class BookFormComponent implements OnInit {
+export class BookFormComponent {
   
   @Output() submitForm = new EventEmitter<Book>();
   bookForm: FormGroup;
@@ -55,8 +46,6 @@ export class BookFormComponent implements OnInit {
   addAuthor() {
     this.authors.push(new FormControl(''));
   }
-
-  ngOnInit(): void {}
 
   onSubmit() {
 
