@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
 import { map, switchMap } from 'rxjs/operators';
+import { DEFAULT_INTERPOLATION_CONFIG } from '@angular/compiler';
 
 @Component({
   selector: 'br-book-details',
@@ -12,13 +13,12 @@ import { map, switchMap } from 'rxjs/operators';
 })
 export class BookDetailsComponent implements OnInit {
 
-  book?: Book;
+  book$: Observable<Book>;
 
   constructor(private route: ActivatedRoute, private bs: BookStoreService) {
     // Synchroner Weg / PULL
     // const isbn = this.route.snapshot.paramMap.get('isbn');
     // console.log(isbn);
-    
 
     // Asynchroner Weg / PUSH
     // TODO: Verschachtelte Subscriptions!
@@ -29,14 +29,11 @@ export class BookDetailsComponent implements OnInit {
       });
     });    */
 
-    this.route.paramMap.pipe(
+    // import { map } from 'rxjs/operators';
+    this.book$ = this.route.paramMap.pipe(
       map(params => params.get('isbn') || ''),
       switchMap(isbn => this.bs.getSingle(isbn))
-    ).subscribe(book => {
-      this.book = book;
-    });
-
-    
+    );
   }
   
   ngOnInit(): void {
