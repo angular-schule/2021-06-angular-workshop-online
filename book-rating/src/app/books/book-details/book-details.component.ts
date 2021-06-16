@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'br-book-details',
@@ -21,12 +22,21 @@ export class BookDetailsComponent implements OnInit {
 
     // Asynchroner Weg / PUSH
     // TODO: Verschachtelte Subscriptions!
-    this.route.paramMap.subscribe(params => {
-      const isbn = params.get('isbn') || ''; // Typ ist normalerweise "string | null"
+    /*this.route.paramMap.subscribe(params => {
+      const isbn = params.get('isbn') || '';
       this.bs.getSingle(isbn).subscribe(book => {
         this.book = book;
       });
-    });    
+    });    */
+
+    this.route.paramMap.pipe(
+      map(params => params.get('isbn') || ''),
+      switchMap(isbn => this.bs.getSingle(isbn))
+    ).subscribe(book => {
+      this.book = book;
+    });
+
+    
   }
   
   ngOnInit(): void {
